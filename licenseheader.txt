@@ -1,0 +1,10 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Copyright Brickfeet LLC
+${licensePrefix}Unauthorized copying of this file, via any medium is strictly prohibited
+${licensePrefix}Proprietary and confidential
+${licensePrefix}Written by Bryan Schorn <bschorn@gmail.com>, December 2019
+<#if licenseLast??>
+${licenseLast}
+</#if>

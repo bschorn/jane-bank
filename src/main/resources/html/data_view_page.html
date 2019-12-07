@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<!--
+The MIT License
+
+Copyright 2019 bschorn.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Active Node Service - Repo Viewer</title>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <!--link rel="stylesheet" href="/resources/demos/style.css"-->
+        <style>
+            .resizable { width: auto; height: 250px; padding: 0.5em; }
+            .resizable h3 { text-align: center; margin: 0; }
+        </style>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $(function () {
+                $("#one_resizable").resizable();
+                $("#current_state_resizable").resizable();
+                $("#event_history_resizable").resizable();
+            });
+        </script>
+        <style type="text/css">
+            /*--STYLE--*/
+            * {box-sizing: border-box;}
+
+            .node-panel-parent {
+                margin: 10 10;
+            }
+            .node-panel-parent {
+                display: grid;
+                grid-template-columns: 1fr 5fr;
+                grid-gap: 5px;
+                grid-auto-rows: minmax(100px, auto);
+            }
+            .one {
+                grid-column: 1;
+                grid-row: 1;
+            }
+            .two { 
+                grid-column: 2;
+                grid-row: 1;
+            }
+            label:hover {
+                text-decoration-line: line-through;
+            }
+            div.no-display {
+                display: none;
+            }
+        </style>
+        <script>
+            /*--SCRIPT--*/
+
+            function page_elements() {
+                return {
+                    context: 'context',
+                    objectTypeList: 'object_type_list',
+                    objectTypeFormLabel: 'object_type_form_label',
+                    objectTypeForm: 'object_type_form',
+                    memberTypeList: 'member_type_list',
+                    predicates: 'predicates',
+                    members: 'members',
+                    add_to_predicate: 'add_to_predicate',
+                    add_to_repo: 'add_to_repo',
+                    move_to_form: 'move_to_form',
+                    request_url: 'request_url',
+                    request: 'json_request',
+                    response: 'json_response',
+                    update_request: 'update_request',
+                    current_state: 'current_state',
+                    event_history: 'event_history'
+                };
+            }
+
+            function page_actions(admin) {
+                return {
+                    AddMemberToPredicates: function (selectedMemberItem) {
+                        let contextValue = admin.selected_value(admin.elements.context);
+                        let objectTypeValue = admin.selected_value(admin.elements.objectTypeList);
+                        let memberTypeValue = admin.selected_value(admin.elements.memberTypeList);
+                        if (admin.predicates[objectTypeValue + ':' + memberTypeValue] === 1) {
+                            alert("Predicate already includes: " + memberTypeValue);
+                            return;
+                        }
+                        admin.html_request(
+                                admin.get_html_data_list_value_type(contextValue, objectTypeValue, memberTypeValue),
+                                function (rawHTML) {
+                                    admin.append_html(
+                                            admin.elements.predicates,
+                                            rawHTML,
+                                            function (attachedElement) {
+                                                admin.predicates[objectTypeValue + ':' + memberTypeValue] = 1;
+                                                let inputElement = attachedElement.querySelector('input, select');
+                                                if (!inputElement) {
+                                                    console.error("Member Type's <input> tag was not found.");
+                                                    return;
+                                                }
+                                                if (selectedMemberItem !== undefined) {
+                                                    for (let i = 0; i < inputElement.options.length; i = i + 1) {
+                                                        if (inputElement.options[i].value === selectedMemberItem) {
+                                                            inputElement.selectedIndex = i;
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                                inputElement.addEventListener('change', admin.events.OnMemberValueChange);
+                                                let labelElement = attachedElement.querySelector('label');
+                                                if (!labelElement) {
+                                                    console.error("Member Type's <label> tag was not found.");
+                                                    return;
+                                                }
+                                                labelElement.addEventListener('click', admin.events.OnRemoveMemberFromPredicates);
+                                                admin.events.OnMemberValueChange();
+                                            }
+                                    );
+                                }
+                        );
+                    },
+                    RemoveMemberFromPredicates: function (labelElement) {
+                        let targetForRemoval = labelElement.parentNode;
+                        labelElement.parentNode.parentNode.removeChild(targetForRemoval);
+                        //admin.predicates[objectTypeValue+':'+memberTypeValue] = 1;
+                        let objectTypeValue = admin.selected_value(admin.elements.objectTypeList);
+                        let memberTypeValue = admin.selected_value(admin.elements.memberTypeList);
+                        admin.predicates[objectTypeValue + ':' + memberTypeValue] = 0;
+                    },
+                    MoveQueryResponseToForm: function () {
+                        let objectTypeValue = admin.selected_value(admin.elements.objectTypeList);
+                        let containerDiv = document.getElementById(admin.elements.objectTypeForm);
+                        let formElement = containerDiv.querySelector('form');
+                        if (formElement) {
+                            let responseElement = document.getElementById(admin.elements.response);
+                            let response_obj = JSON.parse(responseElement.innerText);
+                            let series_obj = response_obj[objectTypeValue];
+                            if (Array.isArray(series_obj)) {
+                                if (series_obj.length > 0) {
+                                    let composite_obj = series_obj[0];
+                                    if (composite_obj instanceof Object) {
+                                        let inputs = formElement.elements;
+                                        for (let property in composite_obj) {
+                                            let key = objectTypeValue + '-' + property;
+                                            if (inputs[key] !== undefined) {
+                                                inputs[key].value = composite_obj[property];
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    CreateUpdate: function (objectTypeValue, formElement) {
+                        let count = formElement.elements.length;
+                        let root = {};
+                        root[objectTypeValue] = {};
+                        let object = root[objectTypeValue];
+                        for (let i = 0; i < count; i = i + 1) {
+                            let childElement = formElement.elements[i];
+                            if (childElement && childElement.tagName === 'SELECT') {
+                                object[childElement.name] = childElement.value;
+                            } else if (childElement && childElement.tagName === 'INPUT') {
+                                object[childElement.name] = childElement.value;
+                            }
+                        }
+                        return root;
+                    },
+                    Submit: function () {
+                        let contextValue = admin.selected_value(admin.elements.context);
+                        let objectTypeValue = admin.selected_value(admin.elements.objectTypeList);
+                        let containerDiv = document.getElementById(admin.elements.objectTypeForm);
+                        let formElement = containerDiv.querySelector('form');
+                        if (formElement) {
+                            let root = admin.actions.CreateUpdate(objectTypeValue, formElement);
+                            let json_message = JSON.stringify(root);
+                            let url = admin.post_json_url_update(contextValue, objectTypeValue);
+                            admin.json_request(url, json_message, function (json_response) {
+                                let responseElement = document.getElementById(admin.elements.update_response);
+                                responseElement.innerText = json_response;
+                                admin.actions.Query();
+                                admin.actions.Refresh();
+                                admin.updates.ShowObjectTypeForm(contextValue, objectTypeValue);
+                            });
+                        }
+                    },
+                    ClearQuery: function () {
+                        document.getElementById(admin.elements.request).innerText = '';
+                        document.getElementById(admin.elements.response).innerText = '';
+                        document.getElementById(admin.elements.predicates).innerText = '';
+                        admin.predicates = {};
+                    },
+                    ClearUpdate: function () {
+                        document.getElementById(admin.elements.update_request).innerText = '';
+                    },
+                    Refresh: function () {
+                        let contextValue = admin.selected_value(admin.elements.context);
+                        let objectTypeValue = admin.selected_value(admin.elements.objectTypeList);
+                        let requestElement = document.getElementById(admin.elements.request);
+                        let json_request = requestElement.innerText;
+                        //let url = admin.post_json_url_request(contextValue);
+                        //admin.post_json_respond_json(url,json_request,function(response) {
+                        //document.getElementById(admin.elements.response).innerText = response;
+                        //});
+                        let html_url = admin.post_html_url_request(contextValue);
+                        //let html_url = admin.api_url(params);
+                        admin.post_json_respond_html(html_url, json_request, function (response) {
+                            admin.replace_html(
+                                    admin.elements.current_state,
+                                    response,
+                                    function (newElement) {
+                                    }
+                            )
+                        });
+                        let html_events_url = admin.post_html_events_url_request(contextValue);
+                        admin.post_json_respond_html(html_events_url, json_request, function (response) {
+                            admin.replace_html(
+                                    admin.elements.event_history,
+                                    response,
+                                    function (newElement) {
+                                    }
+                            )
+                        });
+                    },
+                    ClearEvents: function () {
+                    },
+                    LoadEvents: function (seriesKey) {
+                    },
+                    Query: function () {
+                        let contextValue = admin.selected_value(admin.elements.context);
+                        let objectTypeValue = admin.selected_value(admin.elements.objectTypeList);
+                        let predicateDivElement = document.getElementById(admin.elements.predicates);
+                        if (!predicateDivElement) {
+                            console.error("Predicate section at element_id '" + admin.elements.predicates + "' was not found.");
+                            return;
+                        }
+                        let criteria = {};
+                        if (predicateDivElement.hasChildNodes()) {
+                            let children = predicateDivElement.childNodes;
+                            for (let i = 0; i < children.length; ++i) {
+                                let memberDivElement = children[i];
+                                let labelElement = memberDivElement.querySelector('label');
+                                let inputElement = memberDivElement.querySelector('input, select');
+                                if (labelElement && inputElement) {
+                                    let valueType = labelElement.textContent;
+                                    let value = inputElement.value;
+                                    criteria[valueType] = value;
+                                }
+                            }
+                        }
+                        var request = {};
+                        request[objectTypeValue] = criteria;
+                        let requestElement = document.getElementById(admin.elements.request);
+                        requestElement.innerText = JSON.stringify(request, undefined, 2);
+                        admin.actions.Refresh();
+                    },
+                    SubscriptionQuery: function () {
+                        let contextValue = admin.selected_value(admin.elements.context);
+                        let objectTypeValue = admin.selected_value(admin.elements.objectTypeList);
+                        let predicateDivElement = document.getElementById(admin.elements.predicates);
+                        if (!predicateDivElement) {
+                            console.error("Predicate section at element_id '" + admin.elements.predicates + "' was not found.");
+                            return;
+                        }
+                        let criteria = [];
+                        if (predicateDivElement.hasChildNodes()) {
+                            let children = predicateDivElement.childNodes;
+                            for (let i = 0; i < children.length; ++i) {
+                                let memberDivElement = children[i];
+                                let labelElement = memberDivElement.querySelector('label');
+                                let inputElement = memberDivElement.querySelector('input, select');
+                                if (labelElement && inputElement) {
+                                    let valueType = labelElement.textContent;
+                                    let value = inputElement.value;
+                                    criteria.push(objectTypeValue + '.' + valueType + ' = ' + value);
+                                }
+                            }
+                        }
+                        let obj_request = {
+                            SELECT: {},
+                            FROM: [],
+                            WHERE: []
+                        };
+                        obj_request['SELECT'][objectTypeValue] = [];
+                        obj_request['SELECT'][objectTypeValue].push('*');
+                        obj_request['FROM'].push(objectTypeValue);
+                        obj_request['WHERE'].push(criteria.pop());
+                        let json_request = JSON.stringify(obj_request, undefined, 2);
+                        let requestElement = document.getElementById(admin.elements.request);
+                        requestElement.innerText = json_request;
+                        admin.actions.Refresh();
+                    }
+                };
+            }
+
+            function page_updates(admin) {
+                return {
+                    UpdateContextList: function () {
+                        admin.html_request(
+                                admin.get_html_meta_context_list(),
+                                function (rawHTML) {
+                                    admin.replace_html(
+                                            admin.elements.context,
+                                            rawHTML,
+                                            function () {
+                                                admin.bind_element_id(admin.elements.context,
+                                                        admin.events.OnContextChange, "change");
+                                                admin.events.OnContextChange();
+                                            }
+                                    );
+                                }
+                        );
+                    },
+                    UpdateObjectTypeList: function (context) {
+                        admin.html_request(
+                                admin.get_html_meta_object_list(context),
+                                function (rawHTML) {
+                                    admin.replace_html(
+                                            admin.elements.objectTypeList,
+                                            rawHTML,
+                                            function () {
+                                                admin.bind_element_id(admin.elements.objectTypeList,
+                                                        admin.events.OnObjectTypeChange, "change");
+                                                admin.events.OnObjectTypeChange();
+                                            }
+                                    );
+                                }
+                        );
+                    },
+                    UpdateMemberTypeList: function (context, object_type) {
+                        admin.html_request(
+                                admin.get_html_meta_member_list(context, object_type),
+                                function (rawHTML) {
+                                    admin.replace_html(
+                                            admin.elements.memberTypeList,
+                                            rawHTML,
+                                            function () {
+                                                admin.bind_element_id(admin.elements.memberTypeList,
+                                                        admin.events.OnMemberTypeChange, "change");
+                                                admin.events.OnMemberTypeChange();
+                                            }
+                                    );
+                                }
+                        );
+                    },
+                    UpdateMemberTypeDisplay: function (context, object_type, member_type) {
+                        console.log(context + '->' + object_type + '->' + member_type);
+                    },
+                    /*
+                     UpdateObjectTypeFormLabel: function(object_type) {
+                     let labelDiv = document.getElementById(admin.elements.objectTypeFormLabel);
+                     labelDiv.textContent = object_type;
+                     },
+                     */
+                    ShowObjectTypeForm: function (context, object_type) {
+                        admin.html_request(
+                                admin.get_html_url_object_type_form(context, object_type),
+                                function (rawHTML) {
+                                    admin.replace_html(
+                                            admin.elements.objectTypeForm,
+                                            rawHTML,
+                                            function () {
+                                                //admin.updates.UpdateObjectTypeFormLabel(object_type);
+                                                admin.updates.ShowObjectTypeRequest();
+                                                let containerDiv = document.getElementById(admin.elements.objectTypeForm);
+                                                let formElement = containerDiv.querySelector('form');
+                                                if (formElement) {
+                                                    let fk_object_types = admin.find_foreign_key(context, formElement);
+                                                    admin.updates.BindEventToFormFieadmin(formElement.id, fk_object_types);
+                                                }
+                                            }
+                                    );
+                                }
+                        );
+                    },
+                    ShowObjectTypeRequest: function () {
+                        let contextValue = admin.selected_value(admin.elements.context);
+                        let objectTypeValue = admin.selected_value(admin.elements.objectTypeList);
+                        let containerDiv = document.getElementById(admin.elements.objectTypeForm);
+                        let formElement = containerDiv.querySelector('form');
+                        if (formElement) {
+                            let root = admin.actions.CreateUpdate(objectTypeValue, formElement);
+                            let requestElement = document.getElementById(admin.elements.update_request);
+                            requestElement.innerText = JSON.stringify(root, undefined, 2);
+                        }
+                    },
+                    BindEventToFormFieadmin: function (element_id, fk_object_types) {
+                        let formElement = document.getElementById(element_id);
+                        if (formElement) {
+                            let count = formElement.elements.length;
+                            for (let i = 0; i < count; i = i + 1) {
+                                let childElement = formElement.elements[i];
+                                if (fk_object_types[childElement.id] !== undefined) {
+                                    admin.bind_element(childElement, admin.events.OnFKMemberFocus);
+                                } else {
+                                    if (childElement && childElement.tagName === 'SELECT') {
+                                        admin.bind_element(childElement, admin.events.OnFormMemberChange);
+                                    } else if (childElement && childElement.tagName === 'INPUT') {
+                                        admin.bind_element(childElement, admin.events.OnFormMemberChange);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                };
+            }
+
+            function page_events(admin) {
+                return {
+                    OnLoad: function (event) {
+                        admin.updates.UpdateContextList();
+                    },
+                    OnContextChange: function (event) {
+                        let contextValue = admin.selected_value(admin.elements.context);
+                        admin.updates.UpdateObjectTypeList(contextValue);
+                    },
+                    OnObjectTypeChange: function (event) {
+                        admin.actions.ClearQuery();
+                        admin.actions.ClearUpdate();
+                        let contextValue = admin.selected_value(admin.elements.context);
+                        let objectTypeValue = admin.selected_value(admin.elements.objectTypeList);
+                        admin.updates.UpdateMemberTypeList(contextValue, objectTypeValue);
+                        //admin.updates.ShowObjectTypeForm(contextValue, objectTypeValue);
+                    },
+                    OnMemberTypeChange: function (event) {
+                        let contextValue = admin.selected_value(admin.elements.context);
+                        let objectTypeValue = admin.selected_value(admin.elements.objectTypeList);
+                        let memberTypeValue = admin.selected_value(admin.elements.memberTypeList);
+                        admin.updates.UpdateMemberTypeDisplay(contextValue, objectTypeValue, memberTypeValue);
+                    },
+                    OnAddMemberToPredicates: function (event) {
+                        admin.actions.AddMemberToPredicates();
+                    },
+                    OnRemoveMemberFromPredicates: function (event) {
+                        admin.actions.RemoveMemberFromPredicates(event.target);
+                    },
+                    OnMemberValueChange: function (event) {
+                        //admin.actions.Query();
+                        admin.actions.SubscriptionQuery();
+                    },
+                    OnFormMemberChange: function (event) {
+                        admin.updates.ShowObjectTypeRequest();
+                    },
+                    OnEdit: function (event) {
+                        admin.actions.MoveQueryResponseToForm();
+                    },
+                    OnUpdate: function (event) {
+                        admin.actions.Submit();
+                    }
+                };
+            }
+
+            window.onload = function () {
+                InterNodalAdmin(function (admin) {
+                    admin.history = {};
+                    admin.elements = page_elements();
+                    admin.actions = page_actions(admin);
+                    admin.updates = page_updates(admin);
+                    admin.events = page_events(admin);
+                    admin.predicates = {};
+                    admin.bind_button_event(admin.elements.add_to_predicate, admin.events.OnAddMemberToPredicates);
+                    //admin.bind_button_event(admin.elements.add_to_repo,admin.events.OnUpdate);
+                    //admin.bind_button_event(admin.elements.move_to_form,admin.events.OnEdit);
+                    admin.events.OnLoad();
+                });
+            };
+        </script>
+    </head>
+    <body>
+        <div class="node-panel-parent">
+            <div class="one">
+                <div id='one_resizable' class="ui-widget-content">
+                    <div id='context' class='section'></div>
+                    <div id='object_type_list' class='section'></div>
+                    <div class='section'>
+                        <div id='member_type_list'></div>
+                        <div class='button'>
+                            <button id='add_to_predicate' type='button'>Add-To-Predicates</button>
+                        </div>
+                    </div>
+                    <div class='section'>
+                        <div class='collection-title'>Predicates</div>
+                        <div id='predicates' class='collection'></div>
+                    </div>
+                    <!--div class='section'>
+                            <div id='object_type_form'></div>
+                            <div class='button'>
+                                    <button id='add_to_repo' type='button'>Submit</button>
+                            </div>
+                    </div-->
+                </div>
+            </div>
+            <div class="two">
+                <div id="current_state_resizable" class="ui-widget-content">
+                    <h3 class="ui-widget-header">Current State</h3>
+                    <div id='current_state'></div>
+                </div>
+                <div id="event_history_resizable" class="ui-widget-content">
+                    <h3 class="ui-widget-header">Event History</h3>
+                    <div id='event_history'></div>
+                </div>
+                <div class='section no-display'>
+                    <div class='collection-title'>Query Request</div>
+                    <pre id='request_html'></pre>
+                    <pre id='json_request'></pre>
+                </div>
+                <div class='section no-display'>
+                    <div class='collection-title'>Query Response</div>
+                    <pre id='json_response'></pre>
+                    <div class='button'>
+                        <button id='move_to_form' type='button'>Edit</button>
+                    </div>
+                </div>
+                <div class='section no-display'>
+                    <div class='collection-title'>Update Request</div>
+                    <pre id='update_request'></pre>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

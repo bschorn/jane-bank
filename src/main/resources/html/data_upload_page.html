@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!--
+The MIT License
+
+Copyright 2019 bschorn.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+-->
+<html>
+    <head>
+        <title>Active Node Service - Data Upload</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script>
+            /*--SCRIPT--*/
+
+
+            function page_elements() {
+                return {
+                    context: 'context',
+                    file_path: 'file_path',
+                    file_type: 'file_type',
+                    objectTypeList: 'object_type_list',
+                    submit: 'submit'
+                };
+            }
+            function page_updates(admin) {
+                return {
+                    UpdateContextList: function () {
+                        admin.html_request(
+                                admin.get_html_meta_context_list(),
+                                function (rawHTML) {
+                                    admin.replace_html(
+                                            admin.elements.context,
+                                            rawHTML,
+                                            function () {
+                                                admin.bind_element_id(admin.elements.context,
+                                                        admin.events.OnContextChange, "change");
+                                                admin.events.OnContextChange();
+                                            }
+                                    );
+                                }
+                        );
+                    },
+                    UpdateObjectTypeList: function (context) {
+                        admin.html_request(
+                                admin.get_html_meta_object_list(context),
+                                function (rawHTML) {
+                                    admin.replace_html(
+                                            admin.elements.objectTypeList,
+                                            rawHTML,
+                                            function () {
+                                                /*
+                                                 admin.bind_element_id(admin.elements.objectTypeList,admin.events.OnObjectTypeChange,"change");
+                                                 admin.events.OnObjectTypeChange();
+                                                 */
+                                            }
+                                    );
+                                }
+                        );
+                    }
+                };
+            }
+
+
+            function page_actions(admin) {
+                return {
+                    Upload: function (url, fieldName, selectedFile) {
+                        var formData = new FormData();
+                        formData.append(fieldName, selectedFile);
+
+                        var req = new XMLHttpRequest();
+                        req.open("POST", url);
+                        req.onload = function (event) {
+                            alert(event.target.responseText);
+                        };
+                        req.send(formData);
+                    },
+                    Submit: function () {
+                        let contextValue = admin.get_value(admin.elements.context);
+                        let fileType = admin.get_value(admin.elements.file_type);
+                        let entityType = admin.get_value(admin.elements.objectTypeList);
+                        let selectedFile = document.getElementById(admin.elements.file_path).files[0];
+                        let url = admin.post_file_upload_form(contextValue, fileType, entityType);
+                        admin.actions.Upload(url, 'file_name', selectedFile);
+                    }
+                };
+            }
+
+            function page_events(admin) {
+                return {
+                    OnLoad: function (event) {
+                        admin.updates.UpdateContextList();
+                    },
+                    OnContextChange: function (event) {
+                        let contextValue = admin.get_value(admin.elements.context);
+                        admin.updates.UpdateObjectTypeList(contextValue);
+                    }
+                };
+            }
+
+            window.onload = function () {
+                InterNodalAdmin(function (admin) {
+                    admin.elements = page_elements();
+                    admin.updates = page_updates(admin);
+                    admin.actions = page_actions(admin);
+                    admin.events = page_events(admin);
+                    admin.events.OnLoad();
+                    admin.bind_button_event(admin.elements.submit, admin.actions.Submit);
+                });
+            }
+
+        </script>
+    </head>
+    <body>
+        <div>
+            <form id='node-upload-form'>
+                <div id='context' class='section'></div>
+                <select id='file_type'>
+                    <option selected value='SINGLE_JSON'>Mega Object (one single JSON object)</option>
+                    <option value='MULTI_JSON'>Recovery File Format (line feed delimited JSON objects)</option>
+                    <option value='CSV'>Comma Delimited File (with header)</option>
+                </select>
+                <input id='file_path' type='file'>
+                <div>Select a root Entity
+                    <div id='object_type_list' class='section'></div>
+                </div>
+                <input id='milestone_date' type='date' value=''>
+                <input id='milestone_type' type='text' value='BRYAN_ISG_LDS'>
+                <input id='submit' type='button' value='Upload'>
+            </form>
+        </div>
+    </body>
+</html>

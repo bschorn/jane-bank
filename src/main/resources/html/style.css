@@ -1,0 +1,135 @@
+
+body {
+    margin: 0 auto;
+    padding: 0;
+	font-family: 'Roboto', sans-serif;
+	font-size: 0.85em;
+	/* #62678E Granite */
+	/* #F5C45E Mustard */
+}
+* {
+	/* makes it easier to size boxes */
+    /*box-sizing: border-box;*/
+}
+h2 {
+    margin: 0.15em;
+}
+h3 {
+    margin: 0.15em;
+}
+p {
+    margin: 0.15em;
+}
+input, label {
+    display:block;
+	font-size: 1em;
+}
+form > div {
+    min-width: 250px;
+}
+span {
+    font-weight: bold;
+}
+div.dormant {
+    display: none;
+}
+div.section {
+	margin: 0.15em;
+	padding: 2px;
+	border-width: 2px;
+	border-style: solid;
+	color: #f7f7f7;
+	background-color: #606470;
+	border-color: #323643;
+}
+
+input:invalid {
+    border-color: red;
+    border-width: 1px;
+}
+input:valid {
+    border-color: inherit;
+    border-width: 1px;
+}
+div.collection {
+	padding: 2px;
+}
+div.collection-title {
+	text-align: center;
+	font-weight: bold;
+	color: #f7f7f7;
+	letter-spacing: 2px;
+}
+label.node-form-label {
+	text-align: center;
+	font-weight: bold;
+	color: #f7f7f7;
+	letter-spacing: 2px;
+}
+caption {
+	padding: 5px;
+	font-size: 11pt;
+	font-weight: bold;
+	letter-spacing: 1px;
+	background-color: #93deff;
+	color: #323643;
+}
+caption.active-table-caption-small {
+	padding: 2px;
+	font-size: 0.75em;
+	letter-spacing: 1px;
+	background-color: #93deff;
+	color: #323643;
+}
+table {
+	table-layout: fixed;
+	font-family: 'Roboto', sans-serif;
+	font-size: 0.75em;
+	letter-spacing: 1px;
+	border-collapse: collapse;
+	border: 1px solid #323643;
+	margin: 0px;
+	padding: 2px;
+	color: #f7f7f7;
+	background-color: #323643;
+	text-align: left;
+	/* #323643 dark-gray */
+	/* #606470 gray */
+	/* #93deff baby-blue */
+	/* #f7f7f7 white-white-gray */
+}
+thead {
+	border-bottom: 2px solid #93deff;
+	letter-spacing: 2px;
+}
+tfoot {
+	border-top: 2px solid #93deff;
+	letter-spacing: 2px;
+}
+
+th {
+	background-color: #323643;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+tbody tr:hover {
+	background-color: #93deff;
+	color: #323643;
+}
+td {
+	font-family: 'Roboto Mono', monospace;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border-top: 1px solid #606470;
+}
+
+th.active_node_numeric, td.active_node_numeric {
+	text-align: right;
+}
+th.node_numeric, td.node_numeric {
+	text-align: right;
+}
