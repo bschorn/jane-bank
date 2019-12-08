@@ -6,11 +6,13 @@
  */
 package com.schorn.jane.bank;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import org.schorn.ella.ComponentProperties;
 import org.schorn.ella.app.ActiveMain;
-import org.schorn.ella.app.NodeConfig;
 import org.schorn.ella.schema.ActiveSchemaParser;
-import org.schorn.ella.ws.EllaWsApplication;
+import org.schorn.ella.util.CommandLineArgs;
 
 /**
  *
@@ -18,25 +20,51 @@ import org.schorn.ella.ws.EllaWsApplication;
  */
 public class Main {
 
+    static void recompile(String[] args) throws Exception {
+        CommandLineArgs cmdLineArgs = new CommandLineArgs(args);
+        ComponentProperties.NODE.checkForException();
+        String[] contexts = cmdLineArgs.getParameterValue("Active.Contexts").split(",");
+        if (contexts != null && contexts.length > 0) {
+            String context = contexts[0];
+            String specFile = ComponentProperties.NODE.getProperty("Active.Spec");
+            Path specFilePath = Paths.get(specFile);
+            if (!Files.exists(specFilePath)) {
+                specFilePath = Paths.get(ComponentProperties.NODE.getRootPath().toString(), specFile);
+            }
+            if (Files.exists(specFilePath)) {
+                String[] metaFiles = ComponentProperties.NODE.getProperty("Active.Metas").split(",");
+                if (specFile != null) {
+                    for (String metaFile : metaFiles) {
+                        if (metaFile.toLowerCase().contains(context.toLowerCase())) {
+                            Path metaFilePath = Paths.get(metaFile);
+                            if (!Files.exists(metaFilePath)) {
+                                metaFilePath = Paths.get(ComponentProperties.NODE.getRootPath().toString(), metaFile);
+                            }
+                            if (Files.exists(metaFilePath)) {
+                                ActiveSchemaParser.compile(context, specFilePath.toString(), metaFilePath.toString());
+                            } else {
+                                System.err.println(String.format("there is no metaFilePath"));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         try {
             /*
                 Running InterNodal
              */
             ActiveMain.Starter starter = new ActiveMain.Starter(args).create();
-
-            String context = "jane_bank";
-            String specFile = ComponentProperties.NODE.getProperty("ActiveSpec", null);
-            String[] metaFiles = NodeConfig.ACTIVE_METAS.values(",");
-            if (specFile != null) {
-                ActiveSchemaParser.compile(context, specFile, metaFiles[0]);
-            }
+            recompile(args);
             starter.start();
 
             /*
                 Connectivity
              */
-            new EllaWsApplication.Starter(args).create().start();
+            //new EllaWsApplication.Starter(args).create().start();
             /* ---- alternatively -----
             Starter starter = new Starter(args).create();
             // Do something else first

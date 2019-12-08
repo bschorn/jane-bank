@@ -1,0 +1,1564 @@
+{
+  "meta" : {
+    "field_types" : [ {
+      "name" : "accountCode_type",
+      "data_type" : "TEXT",
+      "constraints" : {
+        "pattern" : "^A[0-9][0-9][0-9A-Z][0-9A-Z][0-9A-Z][0-9]$"
+      }
+    }, {
+      "name" : "accountType_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "addressType_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "bool_type",
+      "data_type" : "BOOL"
+    }, {
+      "name" : "city_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "componentCode_type",
+      "data_type" : "TEXT",
+      "constraints" : {
+        "pattern" : "^C[0-9][0-9][0-9A-Z][0-9A-Z][0-9A-Z][0-9]$"
+      }
+    }, {
+      "name" : "componentType_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "country_type",
+      "data_type" : "ENUM",
+      "constraints" : {
+        "list" : [ "AU|Australia", "AT|Austria", "BE|Belgium", "BM|Bermuda", "BR|Brazil", "CA|Canada", "DK|Denmark", "FI|Finland", "FR|France", "DE|Germany", "IE|Republic of Ireland", "IL|Israel", "IT|Italy", "JP|Japan", "KR|South Korea", "LI|Liechtenstein", "LU|Luxembourg", "NL|Netherlands", "NZ|New Zealand", "NO|Norway", "PL|Poland", "PT|Portugal", "PR|Puerto Rico", "RO|Romania", "GB|United Kingdom", "US|United States", "VG|British Virgin Islands", "VI|United States Virgin Islands" ]
+      }
+    }, {
+      "name" : "county_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "dateOfBirth_type",
+      "data_type" : "DATE"
+    }, {
+      "name" : "dob_type",
+      "data_type" : "DATE"
+    }, {
+      "name" : "educationLevel_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "ethnicity_type",
+      "data_type" : "ENUM",
+      "constraints" : {
+        "list" : [ "H|Hispanic or Latino", "N|Non-Hispanic or Latino", "" ]
+      }
+    }, {
+      "name" : "gender_type",
+      "data_type" : "ENUM",
+      "constraints" : {
+        "list" : [ "M|Male", "F|Female", "T|Transgender" ]
+      }
+    }, {
+      "name" : "instrumentCode_type",
+      "data_type" : "TEXT",
+      "constraints" : {
+        "pattern" : "^I[0-9][0-9][0-9A-Z][0-9A-Z][0-9A-Z][0-9]$"
+      }
+    }, {
+      "name" : "instrumentType_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "int_type",
+      "data_type" : "NUMBER"
+    }, {
+      "name" : "journalCode_type",
+      "data_type" : "TEXT",
+      "constraints" : {
+        "pattern" : "^J[0-9][0-9][0-9A-Z][0-9A-Z][0-9A-Z][0-9]$"
+      }
+    }, {
+      "name" : "journalType_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "ledgerCode_type",
+      "data_type" : "TEXT",
+      "constraints" : {
+        "pattern" : "^L[0-9][0-9][0-9A-Z][0-9A-Z][0-9A-Z][0-9]$"
+      }
+    }, {
+      "name" : "ledgerType_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "name_type",
+      "data_type" : "TEXT",
+      "constraints" : {
+        "pattern" : "^[a-z ,.'-]{1,60}$"
+      }
+    }, {
+      "name" : "obj_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "orderCode_type",
+      "data_type" : "TEXT",
+      "constraints" : {
+        "pattern" : "^O[0-9][0-9][0-9A-Z][0-9A-Z][0-9A-Z][0-9]$"
+      }
+    }, {
+      "name" : "orderType_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "partyCode_type",
+      "data_type" : "TEXT",
+      "constraints" : {
+        "pattern" : "^P[0-9][0-9][0-9A-Z][0-9A-Z][0-9A-Z][0-9]$"
+      }
+    }, {
+      "name" : "partyRole_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "partyType_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "passport_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "personName_type",
+      "data_type" : "TEXT",
+      "constraints" : {
+        "pattern" : "^[a-z ,.'-]{1,60}$"
+      }
+    }, {
+      "name" : "personTitle_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "pobox_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "positionType_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "postalCode_type",
+      "data_type" : "TEXT",
+      "constraints" : {
+        "pattern" : "^\\d{5}$"
+      }
+    }, {
+      "name" : "prefixName_type",
+      "data_type" : "ENUM",
+      "constraints" : {
+        "list" : [ "1st Lt", "Adm", "Atty", "Brother", "Capt", "Chief", "Cmdr", "Col", "Dean", "Dr", "Elder", "Father", "Gen", "Gov", "Hon", "Lt Col", "Maj", "MSgt", "Mr", "Mrs", "Ms", "Prince", "Prof", "Rabbi", "Rev", "Sister" ]
+      }
+    }, {
+      "name" : "productCode_type",
+      "data_type" : "TEXT",
+      "constraints" : {
+        "pattern" : "^X[0-9][0-9][0-9A-Z][0-9A-Z][0-9A-Z][0-9]$"
+      }
+    }, {
+      "name" : "productType_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "race_type",
+      "data_type" : "ENUM",
+      "constraints" : {
+        "list" : [ "W|White American", "B|Black or African American", "N|Native American and Alaska Native", "A|Asian American", "H|Native Hawaiian and Other Pacific Islander", "O|Other", "T|Two or more races" ]
+      }
+    }, {
+      "name" : "street_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "subdivision_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "suffixName_type",
+      "data_type" : "ENUM",
+      "constraints" : {
+        "list" : [ "II", "III", "IV", "CPA", "DDS", "Esq", "JD", "Jr", "LLD", "MD", "PhD", "Ret", "RN", "Sr", "DO" ]
+      }
+    }, {
+      "name" : "text_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "transactionCode_type",
+      "data_type" : "TEXT",
+      "constraints" : {
+        "pattern" : "^T[0-9][0-9][0-9A-Z][0-9A-Z][0-9A-Z][0-9]$"
+      }
+    }, {
+      "name" : "transactionType_type",
+      "data_type" : "TEXT"
+    }, {
+      "name" : "ts_type",
+      "data_type" : "TIMESTAMP"
+    }, {
+      "name" : "uuid_type",
+      "data_type" : "UUID"
+    } ],
+    "array_types" : [ ],
+    "object_types" : [ {
+      "name" : "Party",
+      "object_role" : "entity",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "partyId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "partyCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "partyType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "partyName",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "domicile",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "addressType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "country",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "postalCode",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "subdivision",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "city",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "street1",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "street2",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "county",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "po_box",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "Account",
+      "object_role" : "entity",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "accountId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "accountCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "accountType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "accountName",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "partyId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "productId",
+        "bond_type" : "FOREIGN_KEY"
+      } ]
+    }, {
+      "name" : "Instrument",
+      "object_role" : "entity",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "instrumentId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "instrumentCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "instrumentType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "instrumentName",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "Product",
+      "object_role" : "entity",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "productId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "productCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "productType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "productName",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "Component",
+      "object_role" : "entity",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "componentId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "componentCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "componentName",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "Order",
+      "object_role" : "activity",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "orderId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "orderCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "orderType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "accountId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "instrumentId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "cpAccountType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "cpAccountId",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "dummy",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "Transaction",
+      "object_role" : "activity",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "transactionId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "transactionCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "transactionType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "orderId",
+        "bond_type" : "FOREIGN_KEY"
+      } ]
+    }, {
+      "name" : "Journal",
+      "object_role" : "activity",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "journalId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "journalCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "journalType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "transactionId",
+        "bond_type" : "FOREIGN_KEY"
+      } ]
+    }, {
+      "name" : "Position",
+      "object_role" : "aggregate",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "snapshotTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "positionId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "positionType",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "Ledger",
+      "object_role" : "aggregate",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "snapshotTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "ledgerId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "ledgerCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "ledgerType",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "PartyAddress",
+      "object_role" : "entity",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "addressType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "country",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "postalCode",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "subdivision",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "city",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "street1",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "street2",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "county",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "po_box",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "PartyPerson",
+      "object_role" : "party",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "partyId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "partyCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "partyType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "partyName",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "domicile",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "addressType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "country",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "postalCode",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "subdivision",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "city",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "street1",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "street2",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "county",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "po_box",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "prefixName",
+        "bond_type" : "OPTIONAL"
+      }, {
+        "value_type" : "givenName",
+        "bond_type" : "MUTABLE"
+      }, {
+        "value_type" : "fullName",
+        "bond_type" : "MUTABLE"
+      }, {
+        "value_type" : "surname",
+        "bond_type" : "MUTABLE"
+      }, {
+        "value_type" : "suffixName",
+        "bond_type" : "OPTIONAL"
+      }, {
+        "value_type" : "dateOfBirth",
+        "bond_type" : "MUTABLE"
+      }, {
+        "value_type" : "personGender",
+        "bond_type" : "MUTABLE"
+      }, {
+        "value_type" : "personRace",
+        "bond_type" : "MUTABLE"
+      }, {
+        "value_type" : "personEthnicity",
+        "bond_type" : "MUTABLE"
+      }, {
+        "value_type" : "personTitle",
+        "bond_type" : "MUTABLE"
+      }, {
+        "value_type" : "personEducation",
+        "bond_type" : "MUTABLE"
+      }, {
+        "value_type" : "passportNumber",
+        "bond_type" : "MUTABLE"
+      }, {
+        "value_type" : "foreignNational",
+        "bond_type" : "MUTABLE"
+      }, {
+        "value_type" : "publicFigure",
+        "bond_type" : "MUTABLE"
+      } ]
+    }, {
+      "name" : "PartyOrganization",
+      "object_role" : "party",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "partyId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "partyCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "partyType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "partyName",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "domicile",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "addressType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "country",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "postalCode",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "subdivision",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "city",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "street1",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "street2",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "county",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "po_box",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "dummy",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "PartyGroup",
+      "object_role" : "party",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "partyId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "partyCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "partyType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "partyName",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "domicile",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "addressType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "country",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "postalCode",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "subdivision",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "city",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "street1",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "street2",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "county",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "po_box",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "ownerPartyId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "partyRole",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "PartyGroupMembers",
+      "object_role" : "associative",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "inactiveTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "partyGroupId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "partyId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "partyRole",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "CustomerAccount",
+      "object_role" : "account",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "accountId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "accountCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "accountType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "accountName",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "partyId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "productId",
+        "bond_type" : "FOREIGN_KEY"
+      } ]
+    }, {
+      "name" : "DepositAccount",
+      "object_role" : "customeraccount",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "accountId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "accountCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "accountType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "accountName",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "partyId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "productId",
+        "bond_type" : "FOREIGN_KEY"
+      } ]
+    }, {
+      "name" : "SavingsAccount",
+      "object_role" : "customeraccount",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "accountId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "accountCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "accountType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "accountName",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "partyId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "productId",
+        "bond_type" : "FOREIGN_KEY"
+      } ]
+    }, {
+      "name" : "HouseAccount",
+      "object_role" : "account",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "accountId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "accountCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "accountType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "accountName",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "partyId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "productId",
+        "bond_type" : "FOREIGN_KEY"
+      } ]
+    }, {
+      "name" : "PrincipalAccount",
+      "object_role" : "houseaccount",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "accountId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "accountCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "accountType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "accountName",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "partyId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "productId",
+        "bond_type" : "FOREIGN_KEY"
+      } ]
+    }, {
+      "name" : "DepositProduct",
+      "object_role" : "product",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "productId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "productCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "productType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "productName",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "SavingsProduct",
+      "object_role" : "product",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "productId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "productCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "productType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "productName",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "LoyaltyProduct",
+      "object_role" : "product",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "productId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "productCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "productType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "productName",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "TimeDepositProduct",
+      "object_role" : "product",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "productId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "productCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "productType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "productName",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "LineOfCreditProduct",
+      "object_role" : "product",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "productId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "productCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "productType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "productName",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "TimeDepositComponent",
+      "object_role" : "component",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "componentId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "componentCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "componentName",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "FeeComponent",
+      "object_role" : "component",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "componentId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "componentCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "componentName",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "LimitsComponent",
+      "object_role" : "component",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "activeTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "version",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "componentId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "componentCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "componentName",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "TransferOrder",
+      "object_role" : "order",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "orderId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "orderCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "orderType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "accountId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "instrumentId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "cpAccountType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "cpAccountId",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "dummy",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "PaymentOrder",
+      "object_role" : "order",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "orderId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "orderCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "orderType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "accountId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "instrumentId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "cpAccountType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "cpAccountId",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "dummy",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "CollectionOrder",
+      "object_role" : "order",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "orderId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "orderCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "orderType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "accountId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "instrumentId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "cpAccountType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "cpAccountId",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "dummy",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "StandingOrder",
+      "object_role" : "order",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "orderId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "orderCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "orderType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "accountId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "instrumentId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "cpAccountType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "cpAccountId",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "dummy",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "StandingPayment",
+      "object_role" : "standingorder",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "orderId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "orderCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "orderType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "accountId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "instrumentId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "cpAccountType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "cpAccountId",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "dummy",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "StandingCollection",
+      "object_role" : "standingorder",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "orderId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "orderCd",
+        "bond_type" : "NATURAL_KEY"
+      }, {
+        "value_type" : "orderType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "accountId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "instrumentId",
+        "bond_type" : "FOREIGN_KEY"
+      }, {
+        "value_type" : "cpAccountType",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "cpAccountId",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "dummy",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "TimeDepositPosition",
+      "object_role" : "position",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "snapshotTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "positionId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "positionType",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "FeePosition",
+      "object_role" : "position",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "snapshotTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "positionId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "positionType",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    }, {
+      "name" : "LimitsPosition",
+      "object_role" : "position",
+      "member_types" : [ {
+        "value_type" : "createTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "snapshotTS",
+        "bond_type" : "IMMUTABLE"
+      }, {
+        "value_type" : "positionId",
+        "bond_type" : "PRIMARY_KEY"
+      }, {
+        "value_type" : "positionType",
+        "bond_type" : "IMMUTABLE"
+      } ]
+    } ],
+    "context" : "jane_bank",
+    "value_types" : [ {
+      "name" : "accountCd",
+      "field_type" : "accountCode_type"
+    }, {
+      "name" : "accountId",
+      "field_type" : "uuid_type"
+    }, {
+      "name" : "accountName",
+      "field_type" : "name_type"
+    }, {
+      "name" : "accountType",
+      "field_type" : "accountType_type"
+    }, {
+      "name" : "activeTS",
+      "field_type" : "ts_type"
+    }, {
+      "name" : "activityTS",
+      "field_type" : "ts_type"
+    }, {
+      "name" : "addressType",
+      "field_type" : "addressType_type"
+    }, {
+      "name" : "city",
+      "field_type" : "city_type"
+    }, {
+      "name" : "coaId",
+      "field_type" : "uuid_type"
+    }, {
+      "name" : "componentCd",
+      "field_type" : "componentCode_type"
+    }, {
+      "name" : "componentId",
+      "field_type" : "uuid_type"
+    }, {
+      "name" : "componentName",
+      "field_type" : "name_type"
+    }, {
+      "name" : "componentType",
+      "field_type" : "componentType_type"
+    }, {
+      "name" : "country",
+      "field_type" : "country_type"
+    }, {
+      "name" : "county",
+      "field_type" : "county_type"
+    }, {
+      "name" : "cpAccountId",
+      "field_type" : "text_type"
+    }, {
+      "name" : "cpAccountType",
+      "field_type" : "text_type"
+    }, {
+      "name" : "createTS",
+      "field_type" : "ts_type"
+    }, {
+      "name" : "dateOfBirth",
+      "field_type" : "dateOfBirth_type"
+    }, {
+      "name" : "domicile",
+      "field_type" : "country_type"
+    }, {
+      "name" : "dummy",
+      "field_type" : "text_type"
+    }, {
+      "name" : "eventTS",
+      "field_type" : "ts_type"
+    }, {
+      "name" : "foreignNational",
+      "field_type" : "bool_type"
+    }, {
+      "name" : "fullName",
+      "field_type" : "personName_type"
+    }, {
+      "name" : "givenName",
+      "field_type" : "personName_type"
+    }, {
+      "name" : "inactiveTS",
+      "field_type" : "ts_type"
+    }, {
+      "name" : "instrumentCd",
+      "field_type" : "instrumentCode_type"
+    }, {
+      "name" : "instrumentId",
+      "field_type" : "uuid_type"
+    }, {
+      "name" : "instrumentName",
+      "field_type" : "name_type"
+    }, {
+      "name" : "instrumentType",
+      "field_type" : "instrumentType_type"
+    }, {
+      "name" : "journalCd",
+      "field_type" : "journalCode_type"
+    }, {
+      "name" : "journalId",
+      "field_type" : "uuid_type"
+    }, {
+      "name" : "journalName",
+      "field_type" : "name_type"
+    }, {
+      "name" : "journalType",
+      "field_type" : "journalType_type"
+    }, {
+      "name" : "ledgerCd",
+      "field_type" : "ledgerCode_type"
+    }, {
+      "name" : "ledgerId",
+      "field_type" : "uuid_type"
+    }, {
+      "name" : "ledgerType",
+      "field_type" : "ledgerType_type"
+    }, {
+      "name" : "memberPartyId",
+      "field_type" : "uuid_type"
+    }, {
+      "name" : "memberPartyRole",
+      "field_type" : "partyRole_type"
+    }, {
+      "name" : "objectId",
+      "field_type" : "uuid_type"
+    }, {
+      "name" : "orderCd",
+      "field_type" : "orderCode_type"
+    }, {
+      "name" : "orderId",
+      "field_type" : "uuid_type"
+    }, {
+      "name" : "orderName",
+      "field_type" : "name_type"
+    }, {
+      "name" : "orderType",
+      "field_type" : "orderType_type"
+    }, {
+      "name" : "ownerPartyId",
+      "field_type" : "uuid_type"
+    }, {
+      "name" : "ownerPartyRole",
+      "field_type" : "partyRole_type"
+    }, {
+      "name" : "partyCd",
+      "field_type" : "partyCode_type"
+    }, {
+      "name" : "partyGroupId",
+      "field_type" : "uuid_type"
+    }, {
+      "name" : "partyId",
+      "field_type" : "uuid_type"
+    }, {
+      "name" : "partyName",
+      "field_type" : "name_type"
+    }, {
+      "name" : "partyRole",
+      "field_type" : "partyRole_type"
+    }, {
+      "name" : "partyType",
+      "field_type" : "partyType_type"
+    }, {
+      "name" : "passportNumber",
+      "field_type" : "passport_type"
+    }, {
+      "name" : "personEducation",
+      "field_type" : "educationLevel_type"
+    }, {
+      "name" : "personEthnicity",
+      "field_type" : "ethnicity_type"
+    }, {
+      "name" : "personGender",
+      "field_type" : "gender_type"
+    }, {
+      "name" : "personRace",
+      "field_type" : "race_type"
+    }, {
+      "name" : "personTitle",
+      "field_type" : "personTitle_type"
+    }, {
+      "name" : "po_box",
+      "field_type" : "pobox_type"
+    }, {
+      "name" : "positionId",
+      "field_type" : "uuid_type"
+    }, {
+      "name" : "positionType",
+      "field_type" : "positionType_type"
+    }, {
+      "name" : "postalCode",
+      "field_type" : "postalCode_type"
+    }, {
+      "name" : "prefixName",
+      "field_type" : "prefixName_type"
+    }, {
+      "name" : "productCd",
+      "field_type" : "productCode_type"
+    }, {
+      "name" : "productId",
+      "field_type" : "uuid_type"
+    }, {
+      "name" : "productName",
+      "field_type" : "name_type"
+    }, {
+      "name" : "productType",
+      "field_type" : "productType_type"
+    }, {
+      "name" : "publicFigure",
+      "field_type" : "bool_type"
+    }, {
+      "name" : "sequence",
+      "field_type" : "int_type"
+    }, {
+      "name" : "snapshotTS",
+      "field_type" : "ts_type"
+    }, {
+      "name" : "street1",
+      "field_type" : "street_type"
+    }, {
+      "name" : "street2",
+      "field_type" : "street_type"
+    }, {
+      "name" : "subdivision",
+      "field_type" : "subdivision_type"
+    }, {
+      "name" : "suffixName",
+      "field_type" : "suffixName_type"
+    }, {
+      "name" : "surname",
+      "field_type" : "personName_type"
+    }, {
+      "name" : "transactionCd",
+      "field_type" : "transactionCode_type"
+    }, {
+      "name" : "transactionId",
+      "field_type" : "uuid_type"
+    }, {
+      "name" : "transactionName",
+      "field_type" : "name_type"
+    }, {
+      "name" : "transactionType",
+      "field_type" : "transactionType_type"
+    }, {
+      "name" : "version",
+      "field_type" : "int_type"
+    } ]
+  }
+}

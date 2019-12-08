@@ -13,8 +13,8 @@
     <dependencies>
         <dependency>
             <groupId>org.schorn.ella</groupId>
-            <artifactId>internodal</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <artifactId>inter-nodal</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <name>jane-bank</name>
