@@ -471,16 +471,26 @@ ObjectTypes
 
 /*
 
-SelectTypes
-    .def("TradeSummary",
-        Members
-            .add(Math.sum(ValueType.netAmt), As("totNetAmt"))
-            .add(Math.sum(ValueType.quantity), As("totQty"))
-            .add(Math.sum(Math.multiply(ValueType.quantity, ValueType.price)), As("totGrossAmt"))
-            .add(Math.divide(Math.sum(Math.multiply(ValueType.quantity, ValueType.price)), Math.sum(ValueType.quantity)), As("avgPx"))
-            .add(Math.divide(Math.sum(ValueType.netAmt), Math.sum(ValueType.quantity)), As("avgNetPx")));
+Reductions
+    .def("Trade",
+        Inputs
+            .def("NetAmt", DataType.DECIMAL)
+            .def("Qty", DataType.DECIMAL)
+            .def("Px", DataType.DECIMAL)),
+        Outputs
+            .def("TotNetAmt", DataType.DECIMAL)
+            .def("TotQty", DataType.DECIMAL)
+            .def("TotAmt", DataType.DECIMAL)
+            .def("AvgPx", DataType.DECIMAL)
+            .def("AvgNetPx", DataType.DECIMAL)),
+        Rules
+            .add(Output.TotNetAmt, Math.sum(Input.NetAmt))
+            .add(Output.TotQty, Math.sum(Input.Qty))
+            .add(Output.TotAmt, Math.multiply(Input.Qty, Input.Px))
+            .add(Output.AvgPx, Math.divide(Math.sum(Math.multiply(Input.Qty, Input.Px)), Math.sum(Input.Qty)))
+            .add(Output.AvtNetPx, Math.divide(Math.sum(Input.NetAmt), Math.sum(Input.Qty))));
 
-GroupTypes
+Groups
     .def("ByAccount",
         Members
             .add(ValueType.tradeDate)
@@ -507,19 +517,15 @@ GroupTypes
             .add(ValueType.productId)
             .add(ValueType.longShort))
 
-FromTypes
-    .def("Trades",
-        Members
-            .add(ObjectType.Trade));
 
-Aggregations
+Reports
     .def("TradeSummaryByAccount", ObjectType.TradeSummary,
+        From(ObjectType.Trade),
         SelectType.TradeSummary,
-        FromType.Trade,
         GroupBy.ByAccount)
     .def("TradeSummaryByStrategy", ObjectType.TradeSummary,
         SelectType.TradeSummary,
-        FromType.Trade,
+        From.Trade,
         GroupBy.ByStrategy)
     .def("TradeSummaryByBroker", ObjectType.TradeSummary,
         SelectType.TradeSummary,

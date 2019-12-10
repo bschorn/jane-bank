@@ -16,6 +16,15 @@
             <artifactId>inter-nodal</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>org.schorn.inter.spring</groupId>
+            <artifactId>inter-spring</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <name>jane-bank</name>
+    <description>java -cp my-jar.jar
+-Dloader.path=external-jar.jar
+-Dloader.main=com.my.Application
+org.springframework.boot.loader.PropertiesLauncher</description>
 </project>
