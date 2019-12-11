@@ -26,8 +26,8 @@ public class Main {
             /*
                 Running InterNodal
              */
-            ActiveMain.Starter starter = new ActiveMain.Starter(args).create();
             CommandLineArgs cmdLineArgs = new CommandLineArgs(args);
+            ActiveMain.Starter starter = new ActiveMain.Starter(args).create();
             String specFile = cmdLineArgs.getParameterValue("Spec.File");
             String context = "jane_bank";
             Path specFilePath = Paths.get(specFile);
@@ -38,15 +38,18 @@ public class Main {
             }
             starter.start();
 
+            System.setProperty("spring.profiles.active", cmdLineArgs.getParameterValue("Active.Environment"));
+
             /*
                 Connectivity
             */
             new EllaWsApplication.Starter(args).create().start();
-            /* ---- alternatively -----
-            Starter starter = new Starter(args).create();
+            /* ---- alternatively ----- 
+            EllaWsApplication.Starter wsStarter = new EllaWsApplication.Starter(args);
             // Do something else first
-            starter.start();
-             */
+            wsStarter.create();
+            wsStarter.start();
+            */
         } catch (Exception ex) {
             ex.printStackTrace();
         }
