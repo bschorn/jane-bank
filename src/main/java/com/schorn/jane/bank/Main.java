@@ -38,7 +38,8 @@ public class Main {
             }
             starter.start();
 
-            System.setProperty("spring.profiles.active", cmdLineArgs.getParameterValue("Active.Environment"));
+            //System.setProperty("spring.profiles.active", cmdLineArgs.getParameterValue("Active.Environment"));
+            System.setProperty("server.port", "3158");
 
             /*
                 Connectivity
