@@ -285,7 +285,11 @@ Templates
 
 
 ObjectTypes
-    .def("Party", 
+    .def("Party",
+        Attributes
+            .add(DataCategory.FACTS)
+            .add(DataPurpose.ENTITY)
+            .add(DataLevel.ENTERPRISE),
         Parents
             .add(Template.Entity),
         Members
@@ -296,6 +300,10 @@ ObjectTypes
             .add(ValueType.domicile)
             .add(Fragment.Address))
     .def("Account", 
+        Attributes
+            .add(DataCategory.FACTS)
+            .add(DataPurpose.ENTITY)
+            .add(DataLevel.LOB),
         Parents
             .add(Template.Entity),
         Members
@@ -306,6 +314,10 @@ ObjectTypes
             .add(ValueType.partyId, BondType.FOREIGN_KEY)
             .add(ValueType.productId, BondType.FOREIGN_KEY))
     .def("Instrument", 
+        Attributes
+            .add(DataCategory.FACTS)
+            .add(DataPurpose.ENTITY)
+            .add(DataLevel.UNIVERSAL),
         Parents
             .add(Template.Entity),
         Members
@@ -314,6 +326,10 @@ ObjectTypes
             .add(ValueType.instrumentType)
             .add(ValueType.instrumentName))
     .def("Product", 
+        Attributes
+            .add(DataCategory.FACTS)
+            .add(DataPurpose.ENTITY)
+            .add(DataLevel.LOB),
         Parents
             .add(Template.Entity),
         Members
@@ -322,6 +338,10 @@ ObjectTypes
             .add(ValueType.productType)
             .add(ValueType.productName))
     .def("Component", 
+        Attributes
+            .add(DataCategory.FACTS)
+            .add(DataPurpose.ENTITY)
+            .add(DataLevel.LOB),
         Parents
             .add(Template.Entity),
         Members
@@ -329,6 +349,10 @@ ObjectTypes
             .add(ValueType.componentCd, BondType.NATURAL_KEY)
             .add(ValueType.componentName))
     .def("Order", 
+        Attributes
+            .add(DataCategory.ACTS)
+            .add(DataPurpose.REQUEST)
+            .add(DataLevel.LOB),
         Parents
             .add(Template.Activity),
         Members
@@ -341,6 +365,10 @@ ObjectTypes
             .add(ValueType.cpAccountId)
             .add(Fragment.Instruction))
     .def("Transaction", 
+        Attributes
+            .add(DataCategory.ACTS)
+            .add(DataPurpose.EXECUTION)
+            .add(DataLevel.LOB),
         Parents
             .add(Template.Activity),
         Members
@@ -349,6 +377,10 @@ ObjectTypes
             .add(ValueType.transactionType)
             .add(ValueType.orderId, BondType.FOREIGN_KEY))
     .def("Journal", 
+        Attributes
+            .add(DataCategory.ACTS)
+            .add(DataPurpose.EXECUTION)
+            .add(DataLevel.LOB),
         Parents
             .add(Template.Activity),
         Members
