@@ -248,38 +248,38 @@ Fragments
         Members
             .add(ValueType.dummy));
 
-Templates
+BaseTypes
     .def("Object", 
         Members
             .add(ValueType.createTS))
     .def("Entity", 
         Parents
-            .add(Template.Object),
+            .add(BaseType.Object),
         Members
             .add(ValueType.activeTS)
             .add(ValueType.version))
     .def("Associative",
         Parents
-            .add(Template.Entity),
+            .add(BaseType.Entity),
         Members
             .add(ValueType.inactiveTS))
     .def("Activity",
         Parents
-            .add(Template.Object))
+            .add(BaseType.Object))
     .def("Process",
         Parents
-            .add(Template.Activity),
+            .add(BaseType.Activity),
         Members
             .add(ValueType.activityTS)
             .add(ValueType.sequence))
     .def("Event",
         Parents
-            .add(Template.Activity),
+            .add(BaseType.Activity),
         Members
             .add(ValueType.eventTS))
     .def("Aggregate", 
         Parents
-            .add(Template.Object),
+            .add(BaseType.Object),
         Members
             .add(ValueType.snapshotTS));
 
@@ -287,11 +287,11 @@ Templates
 ObjectTypes
     .def("Party",
         Attributes
-            .add(DataCategory.FACTS)
-            .add(DataPurpose.ENTITY)
-            .add(DataLevel.ENTERPRISE),
+            .add(ObjectCategory.FACT)
+            .add(ObjectPurpose.ENTITY)
+            .add(ObjectLevel.ENTERPRISE),
         Parents
-            .add(Template.Entity),
+            .add(BaseType.Entity),
         Members
             .add(ValueType.partyId, BondType.PRIMARY_KEY)
             .add(ValueType.partyCd, BondType.NATURAL_KEY)
@@ -301,11 +301,11 @@ ObjectTypes
             .add(Fragment.Address))
     .def("Account", 
         Attributes
-            .add(DataCategory.FACTS)
-            .add(DataPurpose.ENTITY)
-            .add(DataLevel.LOB),
+            .add(ObjectCategory.FACT)
+            .add(ObjectPurpose.ENTITY)
+            .add(ObjectLevel.LOB),
         Parents
-            .add(Template.Entity),
+            .add(BaseType.Entity),
         Members
             .add(ValueType.accountId, BondType.PRIMARY_KEY)
             .add(ValueType.accountCd, BondType.NATURAL_KEY)
@@ -315,11 +315,11 @@ ObjectTypes
             .add(ValueType.productId, BondType.FOREIGN_KEY))
     .def("Instrument", 
         Attributes
-            .add(DataCategory.FACTS)
-            .add(DataPurpose.ENTITY)
-            .add(DataLevel.UNIVERSAL),
+            .add(ObjectCategory.FACT)
+            .add(ObjectPurpose.ENTITY)
+            .add(ObjectLevel.UNIVERSAL),
         Parents
-            .add(Template.Entity),
+            .add(BaseType.Entity),
         Members
             .add(ValueType.instrumentId, BondType.PRIMARY_KEY)
             .add(ValueType.instrumentCd, BondType.NATURAL_KEY)
@@ -327,11 +327,11 @@ ObjectTypes
             .add(ValueType.instrumentName))
     .def("Product", 
         Attributes
-            .add(DataCategory.FACTS)
-            .add(DataPurpose.ENTITY)
-            .add(DataLevel.LOB),
+            .add(ObjectCategory.FACT)
+            .add(ObjectPurpose.ENTITY)
+            .add(ObjectLevel.LOB),
         Parents
-            .add(Template.Entity),
+            .add(BaseType.Entity),
         Members
             .add(ValueType.productId, BondType.PRIMARY_KEY)
             .add(ValueType.productCd, BondType.NATURAL_KEY)
@@ -339,22 +339,22 @@ ObjectTypes
             .add(ValueType.productName))
     .def("Component", 
         Attributes
-            .add(DataCategory.FACTS)
-            .add(DataPurpose.ENTITY)
-            .add(DataLevel.LOB),
+            .add(ObjectCategory.FACT)
+            .add(ObjectPurpose.ENTITY)
+            .add(ObjectLevel.LOB),
         Parents
-            .add(Template.Entity),
+            .add(BaseType.Entity),
         Members
             .add(ValueType.componentId, BondType.PRIMARY_KEY)
             .add(ValueType.componentCd, BondType.NATURAL_KEY)
             .add(ValueType.componentName))
     .def("Order", 
         Attributes
-            .add(DataCategory.ACTS)
-            .add(DataPurpose.REQUEST)
-            .add(DataLevel.LOB),
+            .add(ObjectCategory.ACT)
+            .add(ObjectPurpose.REQUEST)
+            .add(ObjectLevel.LOB),
         Parents
-            .add(Template.Activity),
+            .add(BaseType.Activity),
         Members
             .add(ValueType.orderId, BondType.PRIMARY_KEY)
             .add(ValueType.orderCd, BondType.NATURAL_KEY)
@@ -366,11 +366,11 @@ ObjectTypes
             .add(Fragment.Instruction))
     .def("Transaction", 
         Attributes
-            .add(DataCategory.ACTS)
-            .add(DataPurpose.EXECUTION)
-            .add(DataLevel.LOB),
+            .add(ObjectCategory.ACT)
+            .add(ObjectPurpose.EXECUTION)
+            .add(ObjectLevel.LOB),
         Parents
-            .add(Template.Activity),
+            .add(BaseType.Activity),
         Members
             .add(ValueType.transactionId, BondType.PRIMARY_KEY)
             .add(ValueType.transactionCd, BondType.NATURAL_KEY)
@@ -378,11 +378,11 @@ ObjectTypes
             .add(ValueType.orderId, BondType.FOREIGN_KEY))
     .def("Journal", 
         Attributes
-            .add(DataCategory.ACTS)
-            .add(DataPurpose.EXECUTION)
-            .add(DataLevel.LOB),
+            .add(ObjectCategory.ACT)
+            .add(ObjectPurpose.EXECUTION)
+            .add(ObjectLevel.LOB),
         Parents
-            .add(Template.Activity),
+            .add(BaseType.Activity),
         Members
             .add(ValueType.journalId, BondType.PRIMARY_KEY)
             .add(ValueType.journalCd, BondType.NATURAL_KEY)
@@ -390,13 +390,13 @@ ObjectTypes
             .add(ValueType.transactionId, BondType.FOREIGN_KEY))
     .def("Position", 
         Parents
-            .add(Template.Aggregate),
+            .add(BaseType.Aggregate),
         Members
             .add(ValueType.positionId, BondType.PRIMARY_KEY)
             .add(ValueType.positionType))
     .def("Ledger", 
         Parents
-            .add(Template.Aggregate),
+            .add(BaseType.Aggregate),
         Members
             .add(ValueType.ledgerId, BondType.PRIMARY_KEY)
             .add(ValueType.ledgerCd, BondType.NATURAL_KEY)
@@ -404,7 +404,7 @@ ObjectTypes
             //.add(ValueType.coaId, BondType.FOREIGN_KEY))
     .def("PartyAddress",
         Parents
-            .add(Template.Entity),
+            .add(BaseType.Entity),
         Members
             .add(Fragment.Address))
     .def("PartyPerson",
@@ -425,7 +425,7 @@ ObjectTypes
             .add(ValueType.partyRole))
     .def("PartyGroupMembers", 
         Parents
-            .add(Template.Associative),
+            .add(BaseType.Associative),
         Members
             .add(ValueType.partyGroupId, BondType.FOREIGN_KEY(PartyGroup.partyId))
             .add(ValueType.partyId, BondType.FOREIGN_KEY(Party.partyId))

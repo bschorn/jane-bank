@@ -195,8 +195,10 @@
     } ],
     "array_types" : [ ],
     "object_types" : [ {
+      "object_level" : "ENTERPRISE",
       "name" : "Party",
       "parent_type" : "Entity",
+      "object_purpose" : "ENTITY",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -248,10 +250,13 @@
       }, {
         "value_type" : "po_box",
         "bond_type" : "IMMUTABLE"
-      } ]
+      } ],
+      "object_category" : "FACT"
     }, {
+      "object_level" : "LOB",
       "name" : "Account",
       "parent_type" : "Entity",
+      "object_purpose" : "ENTITY",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -279,10 +284,13 @@
       }, {
         "value_type" : "productId",
         "bond_type" : "FOREIGN_KEY"
-      } ]
+      } ],
+      "object_category" : "FACT"
     }, {
+      "object_level" : "UNIVERSAL",
       "name" : "Instrument",
       "parent_type" : "Entity",
+      "object_purpose" : "ENTITY",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -304,10 +312,13 @@
       }, {
         "value_type" : "instrumentName",
         "bond_type" : "IMMUTABLE"
-      } ]
+      } ],
+      "object_category" : "FACT"
     }, {
+      "object_level" : "LOB",
       "name" : "Product",
       "parent_type" : "Entity",
+      "object_purpose" : "ENTITY",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -329,10 +340,13 @@
       }, {
         "value_type" : "productName",
         "bond_type" : "IMMUTABLE"
-      } ]
+      } ],
+      "object_category" : "FACT"
     }, {
+      "object_level" : "LOB",
       "name" : "Component",
       "parent_type" : "Entity",
+      "object_purpose" : "ENTITY",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -351,10 +365,13 @@
       }, {
         "value_type" : "componentName",
         "bond_type" : "IMMUTABLE"
-      } ]
+      } ],
+      "object_category" : "FACT"
     }, {
+      "object_level" : "LOB",
       "name" : "Order",
       "parent_type" : "Activity",
+      "object_purpose" : "REQUEST",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -382,10 +399,13 @@
       }, {
         "value_type" : "dummy",
         "bond_type" : "IMMUTABLE"
-      } ]
+      } ],
+      "object_category" : "ACT"
     }, {
+      "object_level" : "LOB",
       "name" : "Transaction",
       "parent_type" : "Activity",
+      "object_purpose" : "EXECUTION",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -401,10 +421,13 @@
       }, {
         "value_type" : "orderId",
         "bond_type" : "FOREIGN_KEY"
-      } ]
+      } ],
+      "object_category" : "ACT"
     }, {
+      "object_level" : "LOB",
       "name" : "Journal",
       "parent_type" : "Activity",
+      "object_purpose" : "EXECUTION",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -420,7 +443,8 @@
       }, {
         "value_type" : "transactionId",
         "bond_type" : "FOREIGN_KEY"
-      } ]
+      } ],
+      "object_category" : "ACT"
     }, {
       "name" : "Position",
       "parent_type" : "Aggregate",
