@@ -22,7 +22,6 @@ import org.schorn.ella.ws.EllaWsApplication;
 public class Main {
 
     private final String[] args;
-    private final CommandLineArgs cmdLineArgs;
     private final String context = "jane_bank";
     private final String specFile;
     private final String metaFile;
@@ -33,12 +32,12 @@ public class Main {
 
     public Main(String[] args) {
         this.args = args;
-        this.cmdLineArgs = new CommandLineArgs(args);
-        this.specFile = this.cmdLineArgs.getParameterValue("Spec.File");
-        this.metaFile = this.cmdLineArgs.getParameterValue("Meta.File");
-        this.createMeta = this.cmdLineArgs.hasParameterFlag("Create.Meta");
-        this.loadMeta = this.cmdLineArgs.hasParameterFlag("Load.Meta");
-        this.useSpring = this.cmdLineArgs.hasParameterFlag("Use.Spring");
+        CommandLineArgs.init(args);
+        this.specFile = CommandLineArgs.getParameterValue("Spec.File");
+        this.metaFile = CommandLineArgs.getParameterValue("Meta.File");
+        this.createMeta = CommandLineArgs.hasParameterFlag("Create.Meta");
+        this.loadMeta = CommandLineArgs.hasParameterFlag("Load.Meta");
+        this.useSpring = CommandLineArgs.hasParameterFlag("Use.Spring");
     }
 
     public void createMeta() throws Exception {

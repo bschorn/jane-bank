@@ -10,7 +10,7 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.5.0:exec</goal>
             </goals>
             <properties>
-                <exec.args>-classpath %classpath com.schorn.jane.bank.Main --Create.Meta --Active.Root D:/Users/bschorn/documents/GitHub/jane-bank/src/main/resources --Spec.File ./jane-bank/src/main/resources/model/jane_bank.spec --Meta.File ./jane-bank/src/main/resources/meta/jane_bank.meta.json</exec.args>
+                <exec.args>-classpath %classpath com.schorn.jane.bank.Main --Create.Meta --Active.Resources D:/Users/bschorn/documents/GitHub/jane-bank/src/main/resources --Spec.File ./jane-bank/src/main/resources/model/jane_bank.spec --Meta.File ./jane-bank/src/main/resources/meta/jane_bank.meta.json</exec.args>
                 <exec.executable>java</exec.executable>
                 <exec.workingdir>D:/Users/bschorn/documents/GitHub</exec.workingdir>
             </properties>
@@ -25,7 +25,7 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.5.0:exec</goal>
             </goals>
             <properties>
-                <exec.args>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address} -classpath %classpath com.schorn.jane.bank.Main --Create.Meta --Active.Root D:/Users/bschorn/documents/GitHub/jane-bank/src/main/resources --Spec.File ./jane-bank/src/main/resources/model/jane_bank.spec --Meta.File ./jane-bank/src/main/resources/meta/jane_bank.meta.json</exec.args>
+                <exec.args>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address} -classpath %classpath com.schorn.jane.bank.Main --Create.Meta --Active.Resources D:/Users/bschorn/documents/GitHub/jane-bank/src/main/resources --Spec.File ./jane-bank/src/main/resources/model/jane_bank.spec --Meta.File ./jane-bank/src/main/resources/meta/jane_bank.meta.json</exec.args>
                 <exec.executable>java</exec.executable>
                 <jpda.listen>true</jpda.listen>
                 <exec.workingdir>D:/Users/bschorn/documents/GitHub</exec.workingdir>
@@ -41,7 +41,7 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.5.0:exec</goal>
             </goals>
             <properties>
-                <exec.args>-classpath %classpath com.schorn.jane.bank.Main --Create.Meta --Active.Root D:/Users/bschorn/documents/GitHub/jane-bank/src/main/resources --Spec.File ./jane-bank/src/main/resources/model/jane_bank.spec --Meta.File ./jane-bank/src/main/resources/meta/jane_bank.meta.json</exec.args>
+                <exec.args>-classpath %classpath com.schorn.jane.bank.Main --Create.Meta --Active.Resources D:/Users/bschorn/documents/GitHub/jane-bank/src/main/resources --Spec.File ./jane-bank/src/main/resources/model/jane_bank.spec --Meta.File ./jane-bank/src/main/resources/meta/jane_bank.meta.json</exec.args>
                 <exec.executable>java</exec.executable>
                 <exec.workingdir>D:/Users/bschorn/documents/GitHub</exec.workingdir>
             </properties>
