@@ -195,13 +195,13 @@
     } ],
     "array_types" : [ ],
     "object_types" : [ {
+      "base_types" : [ "Entity" ],
       "name" : "Party",
       "attributes" : {
         "object_level" : "ENTERPRISE",
         "object_purpose" : "ENTITY",
         "object_category" : "FACT"
       },
-      "parent_type" : "Entity",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -255,13 +255,13 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Entity" ],
       "name" : "Account",
       "attributes" : {
         "object_level" : "LOB",
         "object_purpose" : "ENTITY",
         "object_category" : "FACT"
       },
-      "parent_type" : "Entity",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -291,13 +291,13 @@
         "bond_type" : "FOREIGN_KEY"
       } ]
     }, {
+      "base_types" : [ "Entity" ],
       "name" : "Instrument",
       "attributes" : {
         "object_level" : "UNIVERSAL",
         "object_purpose" : "ENTITY",
         "object_category" : "FACT"
       },
-      "parent_type" : "Entity",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -321,13 +321,13 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Entity" ],
       "name" : "Product",
       "attributes" : {
         "object_level" : "LOB",
         "object_purpose" : "ENTITY",
         "object_category" : "FACT"
       },
-      "parent_type" : "Entity",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -351,13 +351,13 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Entity" ],
       "name" : "Component",
       "attributes" : {
         "object_level" : "LOB",
         "object_purpose" : "ENTITY",
         "object_category" : "FACT"
       },
-      "parent_type" : "Entity",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -378,13 +378,13 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Activity" ],
       "name" : "Order",
       "attributes" : {
         "object_level" : "LOB",
         "object_purpose" : "REQUEST",
         "object_category" : "ACT"
       },
-      "parent_type" : "Activity",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -414,13 +414,13 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Activity" ],
       "name" : "Transaction",
       "attributes" : {
         "object_level" : "LOB",
         "object_purpose" : "EXECUTION",
         "object_category" : "ACT"
       },
-      "parent_type" : "Activity",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -438,13 +438,13 @@
         "bond_type" : "FOREIGN_KEY"
       } ]
     }, {
+      "base_types" : [ "Activity" ],
       "name" : "Journal",
       "attributes" : {
         "object_level" : "LOB",
         "object_purpose" : "EXECUTION",
         "object_category" : "ACT"
       },
-      "parent_type" : "Activity",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -462,8 +462,8 @@
         "bond_type" : "FOREIGN_KEY"
       } ]
     }, {
+      "base_types" : [ "Aggregate" ],
       "name" : "Position",
-      "parent_type" : "Aggregate",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -478,8 +478,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Aggregate" ],
       "name" : "Ledger",
-      "parent_type" : "Aggregate",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -497,8 +497,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Entity" ],
       "name" : "PartyAddress",
-      "parent_type" : "Entity",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -537,8 +537,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Party" ],
       "name" : "PartyPerson",
-      "parent_type" : "Party",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -634,8 +634,8 @@
         "bond_type" : "MUTABLE"
       } ]
     }, {
+      "base_types" : [ "Party" ],
       "name" : "PartyOrganization",
-      "parent_type" : "Party",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -692,8 +692,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Party" ],
       "name" : "PartyGroup",
-      "parent_type" : "Party",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -753,8 +753,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Associative" ],
       "name" : "PartyGroupMembers",
-      "parent_type" : "Associative",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -778,8 +778,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Account" ],
       "name" : "CustomerAccount",
-      "parent_type" : "Account",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -809,8 +809,8 @@
         "bond_type" : "FOREIGN_KEY"
       } ]
     }, {
+      "base_types" : [ "CustomerAccount" ],
       "name" : "DepositAccount",
-      "parent_type" : "CustomerAccount",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -840,8 +840,8 @@
         "bond_type" : "FOREIGN_KEY"
       } ]
     }, {
+      "base_types" : [ "CustomerAccount" ],
       "name" : "SavingsAccount",
-      "parent_type" : "CustomerAccount",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -871,8 +871,8 @@
         "bond_type" : "FOREIGN_KEY"
       } ]
     }, {
+      "base_types" : [ "Account" ],
       "name" : "HouseAccount",
-      "parent_type" : "Account",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -902,8 +902,8 @@
         "bond_type" : "FOREIGN_KEY"
       } ]
     }, {
+      "base_types" : [ "HouseAccount" ],
       "name" : "PrincipalAccount",
-      "parent_type" : "HouseAccount",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -933,8 +933,8 @@
         "bond_type" : "FOREIGN_KEY"
       } ]
     }, {
+      "base_types" : [ "Product" ],
       "name" : "DepositProduct",
-      "parent_type" : "Product",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -958,8 +958,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Product" ],
       "name" : "SavingsProduct",
-      "parent_type" : "Product",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -983,8 +983,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Product" ],
       "name" : "LoyaltyProduct",
-      "parent_type" : "Product",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -1008,8 +1008,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Product" ],
       "name" : "TimeDepositProduct",
-      "parent_type" : "Product",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -1033,8 +1033,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Product" ],
       "name" : "LineOfCreditProduct",
-      "parent_type" : "Product",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -1058,8 +1058,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Component" ],
       "name" : "TimeDepositComponent",
-      "parent_type" : "Component",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -1080,8 +1080,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Component" ],
       "name" : "FeeComponent",
-      "parent_type" : "Component",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -1102,8 +1102,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Component" ],
       "name" : "LimitsComponent",
-      "parent_type" : "Component",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -1124,8 +1124,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Order" ],
       "name" : "TransferOrder",
-      "parent_type" : "Order",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -1155,8 +1155,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Order" ],
       "name" : "PaymentOrder",
-      "parent_type" : "Order",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -1186,8 +1186,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Order" ],
       "name" : "CollectionOrder",
-      "parent_type" : "Order",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -1217,8 +1217,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Order" ],
       "name" : "StandingOrder",
-      "parent_type" : "Order",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -1248,8 +1248,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "StandingOrder", "PaymentOrder" ],
       "name" : "StandingPayment",
-      "parent_type" : "StandingOrder",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -1279,8 +1279,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "StandingOrder", "CollectionOrder" ],
       "name" : "StandingCollection",
-      "parent_type" : "StandingOrder",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -1310,8 +1310,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Position" ],
       "name" : "TimeDepositPosition",
-      "parent_type" : "Position",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -1326,8 +1326,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Position" ],
       "name" : "FeePosition",
-      "parent_type" : "Position",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
@@ -1342,8 +1342,8 @@
         "bond_type" : "IMMUTABLE"
       } ]
     }, {
+      "base_types" : [ "Position" ],
       "name" : "LimitsPosition",
-      "parent_type" : "Position",
       "member_types" : [ {
         "value_type" : "createTS",
         "bond_type" : "IMMUTABLE"
