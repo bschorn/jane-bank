@@ -19,6 +19,12 @@
       "name" : "city_type",
       "data_type" : "TEXT"
     }, {
+      "name" : "clientRequestType_type",
+      "data_type" : "ENUM",
+      "constraints" : {
+        "list" : [ "VA|View Account", "UE|Update Email", "CA|Change Address", "UPN|Update Phone Number", "ONA|Open New Account", "AEA|Add External Account", "MAU|Manage Account Users", "DAC|Deposit a Check", "PAB|Pay a Bill", "TM|Transfer Money", "WM|Wire Money", "OZ|Send Money with Zelle", "IZ|Request Money with Zelle" ]
+      }
+    }, {
       "name" : "componentCode_type",
       "data_type" : "TEXT",
       "constraints" : {
@@ -1357,6 +1363,12 @@
         "value_type" : "positionType",
         "bond_type" : "IMMUTABLE"
       } ]
+    }, {
+      "name" : "AvailableRequest",
+      "member_types" : [ {
+        "value_type" : "clientRequestType",
+        "bond_type" : "PRIMARY_KEY"
+      } ]
     } ],
     "context" : "jane_bank",
     "value_types" : [ {
@@ -1383,6 +1395,9 @@
     }, {
       "name" : "city",
       "field_type" : "city_type"
+    }, {
+      "name" : "clientRequestType",
+      "field_type" : "clientRequestType_type"
     }, {
       "name" : "coaId",
       "field_type" : "uuid_type"

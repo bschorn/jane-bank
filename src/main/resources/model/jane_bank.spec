@@ -114,6 +114,7 @@ FieldTypes
     .def("gender_type", DataType.ENUM(Read.File("./ref/gender.dat")))
     .def("race_type", DataType.ENUM(Read.File("./ref/race.dat")))
     .def("ethnicity_type", DataType.ENUM(Read.File("./ref/ethnicity.dat")))
+    .def("clientRequestType_type", DataType.ENUM(Read.File("./ref/client_request.dat")))
     .def("personTitle_type", DataType.TEXT)
     .def("educationLevel_type", DataType.TEXT)
     .def("passport_type", DataType.TEXT)
@@ -211,6 +212,7 @@ ValueTypes
     .def("transactionType", FieldType.transactionType_type)
     .def("ledgerType", FieldType.ledgerType_type)
     .def("partyRole", FieldType.partyRole_type)
+    .def("clientRequestType", FieldType.clientRequestType_type)
 ;
 
 Fragments
@@ -498,6 +500,9 @@ ObjectTypes
     .def("LimitsPosition",
         Parents
             .add(ObjectType.Position))
+    .def("AvailableRequest",
+        Members
+            .add(ValueType.clientRequestType, BondType.PRIMARY_KEY))
 ;
 
 
