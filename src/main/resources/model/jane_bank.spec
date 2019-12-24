@@ -122,8 +122,8 @@ FieldTypes
 ;
 
 ValueTypes
-    .def("objectId", FieldType.uuid_type)
-    .def("createTS", FieldType.ts_type)
+    .def("objectId", FieldType.uuid_type, Flags.add(ValueFlag.SYSTEM))
+    .def("createTS", FieldType.ts_type, Flags.add(ValueFlag.TEMPORAL).add(ValueFlag.SYSTEM))
     .def("activeTS", FieldType.ts_type)
     .def("activityTS", FieldType.ts_type)
     .def("inactiveTS", FieldType.ts_type)

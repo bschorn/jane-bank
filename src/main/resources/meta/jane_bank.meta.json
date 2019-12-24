@@ -1426,6 +1426,7 @@
       "name" : "cpAccountType",
       "field_type" : "text_type"
     }, {
+      "value_flags" : [ "TEMPORAL", "SYSTEM" ],
       "name" : "createTS",
       "field_type" : "ts_type"
     }, {
@@ -1492,6 +1493,7 @@
       "name" : "memberPartyRole",
       "field_type" : "partyRole_type"
     }, {
+      "value_flags" : [ "SYSTEM" ],
       "name" : "objectId",
       "field_type" : "uuid_type"
     }, {
