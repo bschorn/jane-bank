@@ -1373,7 +1373,8 @@
     "context" : "jane_bank",
     "value_types" : [ {
       "name" : "accountCd",
-      "field_type" : "accountCode_type"
+      "field_type" : "accountCode_type",
+      "value_flags" : [ "SYSTEM" ]
     }, {
       "name" : "accountId",
       "field_type" : "uuid_type"
