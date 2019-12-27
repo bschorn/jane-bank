@@ -22,7 +22,7 @@ import org.schorn.ella.ws.EllaWsApplication;
 public class Main {
 
     private final String[] args;
-    private final String context = "jane_bank";
+    private final String context;
     private final String specFile;
     private final String metaFile;
     private final boolean createMeta;
@@ -30,9 +30,18 @@ public class Main {
     private final boolean useSpring;
     private ActiveMain.Starter starter;
 
-    public Main(String[] args) {
+    public Main(String[] args) throws Exception {
         this.args = args;
+        System.setProperty("Active.Resources", this.getClass().getClassLoader().getResource("").toURI().toString());
         CommandLineArgs.init(args);
+        String environment = CommandLineArgs.getParameterValue("Active.Environment");
+        if (environment != null) {
+            System.setProperty("Active.Environment", environment);
+        }
+        this.context = CommandLineArgs.getParameterValue("App.Context");
+        if (this.context != null) {
+            System.setProperty("App.Context", this.context);
+        }
         this.specFile = CommandLineArgs.getParameterValue("Spec.File");
         this.metaFile = CommandLineArgs.getParameterValue("Meta.File");
         this.createMeta = CommandLineArgs.hasParameterFlag("Create.Meta");
