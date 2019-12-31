@@ -9,7 +9,7 @@ package com.schorn.jane.bank;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import org.schorn.ella.app.ActiveMain;
+import org.schorn.ella.app.ActiveApp;
 import org.schorn.ella.node.MetaReader;
 import org.schorn.ella.schema.ActiveSchemaParser;
 import org.schorn.ella.util.CommandLineArgs;
@@ -28,20 +28,18 @@ public class Main {
     private final boolean createMeta;
     private final boolean loadMeta;
     private final boolean useSpring;
-    private ActiveMain.Starter starter;
+    private ActiveApp.Starter starter;
 
     public Main(String[] args) throws Exception {
         this.args = args;
-        System.setProperty("Active.Resources", this.getClass().getClassLoader().getResource("").toURI().toString());
         CommandLineArgs.init(args);
-        String environment = CommandLineArgs.getParameterValue("Active.Environment");
+        CommandLineArgs.getProperties().setProperty("Active.Config.resources",
+                this.getClass().getClassLoader().getResource("").toURI().toString());
+        String environment = CommandLineArgs.getParameterValue("Active.Config.environment");
         if (environment != null) {
-            System.setProperty("Active.Environment", environment);
+            //System.setProperty("Active.environment", environment);
         }
-        this.context = CommandLineArgs.getParameterValue("App.Context");
-        if (this.context != null) {
-            System.setProperty("App.Context", this.context);
-        }
+        this.context = CommandLineArgs.getParameterValue("Active.Config.context");
         this.specFile = CommandLineArgs.getParameterValue("Spec.File");
         this.metaFile = CommandLineArgs.getParameterValue("Meta.File");
         this.createMeta = CommandLineArgs.hasParameterFlag("Create.Meta");
@@ -52,7 +50,8 @@ public class Main {
     public void createMeta() throws Exception {
         Path specFilePath = Paths.get(specFile);
         if (Files.exists(specFilePath)) {
-            ActiveSchemaParser schemaParser = ActiveSchemaParser.compile(this.context, specFilePath.toString());
+            ActiveSchemaParser schemaParser = ActiveSchemaParser.compile(
+                    this.context, specFilePath.toString());
             Path metaFilePath = Paths.get(metaFile);
             Files.write(metaFilePath, schemaParser.getMeta().getBytes());
         }
@@ -62,7 +61,8 @@ public class Main {
         if (this.loadMeta) {
             Path specFilePath = Paths.get(specFile);
             if (Files.exists(specFilePath)) {
-                ActiveSchemaParser schemaParser = ActiveSchemaParser.compile(this.context, specFilePath.toString());
+                ActiveSchemaParser schemaParser = ActiveSchemaParser.compile(
+                        this.context, specFilePath.toString());
                 MetaReader.MetaSupplier metaSupplier = new MetaReader.StringMetaSupplier(schemaParser.getMeta());
                 this.starter.get().addContext(this.context, metaSupplier);
             }
@@ -73,7 +73,7 @@ public class Main {
         if (this.createMeta) {
             this.createMeta();
         } else {
-            this.starter = new ActiveMain.Starter(args).create();
+            this.starter = new ActiveApp.Starter(args).create();
             if (this.loadMeta) {
                 this.loadMeta();
             }
