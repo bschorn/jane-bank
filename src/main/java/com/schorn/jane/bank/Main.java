@@ -33,13 +33,18 @@ public class Main {
     public Main(String[] args) throws Exception {
         this.args = args;
         CommandLineArgs.init(args);
-        CommandLineArgs.getProperties().setProperty("Active.Config.resources",
-                this.getClass().getClassLoader().getResource("").toURI().toString());
-        String environment = CommandLineArgs.getParameterValue("Active.Config.environment");
-        if (environment != null) {
-            //System.setProperty("Active.environment", environment);
+        CommandLineArgs.getProperties()
+                .setProperty("ActiveApp.Config.rootPath", System.getProperty("user.dir"));
+        String configPathStr = CommandLineArgs.getParameterValue("ActiveApp.Config.configPath");
+        Path configPath = Paths.get(System.getProperty("user.dir"), configPathStr);
+        if (!Files.exists(configPath)) {
+            System.err.println(String.format("ConfigPath: %s does not exist.", configPath));
+            System.exit(100);
+        } else {
+            CommandLineArgs.getProperties()
+                    .setProperty("ActiveApp.Config.configPath", configPath.toString().replace("\\", "/"));
         }
-        this.context = CommandLineArgs.getParameterValue("Active.Config.context");
+        this.context = CommandLineArgs.getParameterValue("ActiveApp.Config.context");
         this.specFile = CommandLineArgs.getParameterValue("Spec.File");
         this.metaFile = CommandLineArgs.getParameterValue("Meta.File");
         this.createMeta = CommandLineArgs.hasParameterFlag("Create.Meta");
