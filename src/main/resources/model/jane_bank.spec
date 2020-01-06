@@ -122,10 +122,10 @@ FieldTypes
 ;
 
 ValueTypes
-    .def("objectId", FieldType.uuid_type, Flags.add(ValueFlag.SYSTEM))
-    .def("createTS", FieldType.ts_type, Flags.add(ValueFlag.TEMPORAL).add(ValueFlag.SYSTEM))
-    .def("activeTS", FieldType.ts_type, Flags.add(ValueFlag.TEMPORAL).add(ValueFlag.SYSTEM))
-    .def("activityTS", FieldType.ts_type, Flags.add(ValueFlag.TEMPORAL).add(ValueFlag.SYSTEM))
+    .def("objectId", FieldType.uuid_type)
+    .def("createTS", FieldType.ts_type)
+    .def("activeTS", FieldType.ts_type)
+    .def("activityTS", FieldType.ts_type)
     .def("inactiveTS", FieldType.ts_type)
     .def("snapshotTS", FieldType.ts_type)
     .def("eventTS", FieldType.ts_type)
